@@ -1,0 +1,4 @@
+hyperparams/n_steps,hyperparams/ent_coef,hyperparams/clip_range,hyperparams/learning_rate,hyperparams/batch_size,hyperparams/seed,hyperparams/gamma,rollout/ep_rew_mean,time/total_timesteps,rollout/ep_len_mean,time/fps,time/time_elapsed,time/iterations,train/explained_variance,train/entropy_loss,train/learning_rate,train/value_loss,train/loss,train/n_updates,train/clip_fraction,train/std,train/approx_kl,train/clip_range,train/policy_gradient_loss
+2048,0.01,0.2,0.0003,512,2,0.99,,,,,,,,,,,,,,,,,
+,,,,,,,444.28372690000003,2048,200.0,83,24,1,,,,,,,,,,,
+,,,,,,,443.70493030000006,4096,200.0,84,48,2,-2.5033950805664062e-06,-9.358333635330201,0.0003,5102.498767089844,2385.37939453125,10,0.11923828125,1.1832706928253174,0.008618497,0.2,-0.008328689978225157

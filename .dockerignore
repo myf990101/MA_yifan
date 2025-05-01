@@ -1,0 +1,19 @@
+# dev files
+dev-alias
+.devcontainer
+gym-env
+pyproject.toml
+stubs
+build
+ba-build-final
+**/.gitignore
+**/.gitmodules
+**/.git
+**/benchmark-results
+
+# in ros_gz_ws
+src/ros_gz_ws/build/
+src/ros_gz_ws/log/
+src/ros_gz_ws/install/
+src/ros_gz_ws/utils.alias
+src/ros_gz_ws/reset-sim.sh

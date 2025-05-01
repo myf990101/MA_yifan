@@ -1,0 +1,2 @@
+[console_scripts]
+datanode = gym_gz.datanode:main

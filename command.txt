@@ -1,0 +1,9 @@
+docker buildx ls
+# 假设你在项目根目录，并且 Dockerfile 就在这里
+
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  -t yifanma/drl:latest \
+  -f .devcontainer/Dockerfile \
+  --push \
+  .

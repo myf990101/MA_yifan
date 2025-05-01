@@ -1,0 +1,100 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 240  # Hz
+
+    full_controller:
+      type: cartesian_motion_controller/CartesianMotionController
+
+    position_controller:
+      type: position_controllers/JointGroupPositionController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+#### CARTESIAN CONTROLLER
+full_controller:
+  ros__parameters:
+    end_effector_link: "tool0" # tool0 actually exists
+    robot_base_link: "base_link"
+
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+
+    command_interfaces:
+      - position
+
+    # Default solver (forward dynamics) has exponential slowdown at target position,
+    # if no new target is set. This is bad, because in our usecase, many small targets are set,
+    # so the robot basically always moves slowly.
+    ik_solver: "selectively_damped_least_squares"
+    solver:
+        error_scale: 1.0
+        iterations: 5
+        # publish_state_feedback: True
+
+    pd_gains:
+        # p and d: (i think) responsiveness and damping
+        trans_x: {p: 20., d: 0.0005}
+        trans_y: {p: 20., d: 0.0005}
+        trans_z: {p: 20., d: 0.0005}
+        rot_x: {p: 20., d: 0.0005}
+        rot_y: {p: 20., d: 0.0005}
+        rot_z: {p: 20., d: 0.0005}
+
+### POSITION CONTROLLER
+# Define the parameters for each controller
+position_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    gains:
+      shoulder_pan_joint:
+        p: 0.0
+        i: 0.0
+        d: 0.5
+        i_clamp_max: 5.0
+        i_clamp_min: -5.0
+      shoulder_lift_joint:
+        p: 0.0
+        i: 0.0
+        d: 0.5
+        i_clamp_max: 5.0
+        i_clamp_min: -5.0
+      elbow_joint:
+        p: 0.0
+        i: 0.0
+        d: 0.5
+        i_clamp_max: 5.0
+        i_clamp_min: -5.0
+      wrist_1_joint:    
+        p: 0.0
+        i: 0.0
+        d: 0.5
+        i_clamp_max: 5.0
+        i_clamp_min: -5.0
+      wrist_2_joint:
+        p: 0.0
+        i: 0.0
+        d: 0.5
+        i_clamp_max: 5.0
+        i_clamp_min: -5.0
+      wrist_3_joint:
+        p: 0.0
+        i: 0.0
+        d: 0.5
+        i_clamp_max: 5.0
+        i_clamp_min: -5.0

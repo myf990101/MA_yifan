@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+alias dev-build="devcontainer build --workspace-folder ."
+alias dev-up="devcontainer up --workspace-folder ."
+alias dev-replace-running="devcontainer up --workspace-folder . --remove-existing-container"
+alias dev-enter="clear && devcontainer exec --workspace-folder . /bin/bash"

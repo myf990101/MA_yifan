@@ -1,0 +1,17 @@
+# Original values
+#
+# shoulder_pan_joint: 0.0
+# shoulder_lift_joint: -1.57
+# elbow_joint: 0.0
+# wrist_1_joint: 1.57
+# wrist_2_joint: 0.0
+# wrist_3_joint: 0.0
+
+# Custom values
+# represent a TCP position of about [0.6, 0.4, 0.8]
+shoulder_pan_joint: 0.23
+shoulder_lift_joint: -0.37
+elbow_joint: -1.05
+wrist_1_joint: 1.42
+wrist_2_joint: 0.22
+wrist_3_joint: 1.57

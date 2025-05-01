@@ -1,0 +1,55 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "ROS2 / Gazebo Dev Container",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"user": "${localEnv:USER}",
+		}
+	},
+
+	"containerEnv": {
+		"DISPLAY": "${localEnv:DISPLAY}",
+		"WS": "${containerWorkspaceFolder}",
+		"NVIDIA_VISIBLE_DEVICES": "all",
+		"NVIDIA_DRIVER_CAPABILITIES": "compute,utility"
+	},
+
+	"runArgs": [
+		"--gpus=all"
+	],
+	
+	"mounts": [
+		// enable GUI
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached",
+		// dev tools
+		// -- nvim
+        //"source=/home/${localEnv:USER}/.config/nvim,target=/home/${localEnv:USER}/.config/nvim,type=bind,consistency=cached",
+        //"source=/home/${localEnv:USER}/.local/share/nvim,target=/home/${localEnv:USER}/.local/share/nvim,type=bind,consistency=cached",
+        //"source=/home/${localEnv:USER}/.vim,target=/home/${localEnv:USER}/.vim,type=bind,consistency=cached",
+		// -- tmux
+        //"source=/home/${localEnv:USER}/.config/tmux,target=/home/${localEnv:USER}/.config/tmux,type=bind,consistency=cached",
+        //"source=/home/${localEnv:USER}/.local/share/tmux,target=/home/${localEnv:USER}/.local/share/tmux,type=bind,consistency=cached",
+        //"source=/home/${localEnv:USER}/.tmux,target=/home/${localEnv:USER}/.tmux,type=bind,consistency=cached",
+		// -- git
+        //"source=/home/${localEnv:USER}/.config/git,target=/home/${localEnv:USER}/.config/git,type=bind,consistency=cached",
+    ],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "sudo chown -R ${localEnv:USER}:${localEnv:USER} /home/${localEnv:USER}; export WS_ROOT=$PWD",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	//"remoteUser": "${localEnv:USER}",
+	"containerUser": "${localEnv:USER}",
+	// "appPort": ["8566:22"] // TEst
+}
+
+

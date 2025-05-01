@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+
+<sdf version="1.6">
+  <world name="default">
+    <!-- Plugin for simulating physics -->
+      <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+      <engine>
+          <filename>gz-physics-dartsim-plugin</filename>
+      </engine>
+    </plugin>
+    <physics name="fastaspossible" default="true" type="dart">
+    <!-- 控制仿真速度，相对于真实时间的比例 -->
+    <real_time_factor>50.0</real_time_factor>
+    <!-- 每一步的最大时间间隔 -->
+    <max_step_size>0.004166666666666667</max_step_size>
+    <!-- 仿真更新的频率 -->
+    <real_time_update_rate>240</real_time_update_rate>
+    <!-- 求解器参数 -->
+    <solver>
+      <iterations>100</iterations>
+    </solver>
+    <!-- dartsim 专有参数，可根据需求进行调整 -->
+    <dartsim>
+      <!-- ERP：控制关节误差的修正比例 -->
+      <error_reduction_parameter>0.8</error_reduction_parameter>
+      <!-- CFM：约束力混合，防止数值不稳定 -->
+      <constraint_force_mixing>0.0</constraint_force_mixing>
+    </dartsim>
+  </physics>
+  
+
+
+    <!-- Plugin for handling user commands -->
+    <plugin
+      filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+
+    <!-- Plugin for broadcasting scene updates -->
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+
+    <gravity>0.0 0.0 -9.8</gravity>
+
+    <!-- Include a model of the Sun from an external URI -->
+    <include>
+      <uri>
+        https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun
+      </uri>
+    </include>
+
+    <!-- Include a model of the Ground Plane from an external URI -->
+    <include>
+      <uri>
+        https://fuel.gazebosim.org/1.0/OpenRobotics/models/Ground Plane
+      </uri>
+    </include>
+
+
+    <!-- <model name='wall'>
+      <static>true</static>
+      <pose>0 0 5 0 0 0</pose>
+      <link name='box'>
+          <pose/>
+          <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1 1 2 </size>  
+            </box>
+          </geometry>
+
+                
+          <material>
+            <ambient>0.0 0.0 1.0 1</ambient>
+            <diffuse>0.0 0.0 1.0 1</diffuse>
+            <specular>0.0 0.0 1.0 1</specular>
+          </material>
+          </visual>
+          <collision name='collision'>
+              <geometry>
+                  <box>
+                    <size>1 1 2</size>
+                  </box>
+              </geometry>
+          </collision>
+          <sensor name='sensor_contact' type='contact'>
+            <contact>
+              <collision>collision</collision>
+            </contact>
+          </sensor>
+      </link> 
+      <plugin filename="libignition-gazebo-touchplugin-system.so"
+            name="ignition::gazebo::systems::TouchPlugin">
+        <target>ur</target>
+        <namespace>wall</namespace>
+        <time>0.001</time>
+        <enabled>true</enabled>
+      </plugin>
+    </model> -->
+
+    <model name='target'>
+      <static>true</static>
+      <pose>0.3 0 0.5 0 0 0</pose><!--pose relative to the world-->
+      <link name='target_box'>
+          <pose/>
+          <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.05 </size>  <!-- 半径 -->
+            </box>
+          </geometry>
+
+                <!--let's add color to our link-->
+          <material>
+            <ambient>0.0 0.0 1.0 1</ambient>
+            <diffuse>0.0 0.0 1.0 1</diffuse>
+            <specular>0.0 0.0 1.0 1</specular>
+          </material>
+          </visual>
+          <sensor name='sensor_contact' type='contact'>
+            <contact>
+              <collision>collision</collision>
+            </contact>
+          </sensor>
+      </link> 
+      <plugin filename="libignition-gazebo-touchplugin-system.so"
+            name="ignition::gazebo::systems::TouchPlugin">
+        <target>ur</target>
+        <namespace>wall</namespace>
+        <time>0.001</time>
+        <enabled>true</enabled>
+      </plugin>
+    </model>
+
+    
+  
+    <scene>
+      <shadows>false</shadows>
+    </scene>
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="libignition-gazebo-contact-system.so"
+        name="ignition::gazebo::systems::Contact">
+    </plugin>
+  </world>
+</sdf>

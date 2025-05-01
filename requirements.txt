@@ -1,0 +1,19 @@
+# general dependencies
+
+gymnasium==0.29.1
+# https://download.pytorch.org/whl/cpu/torch-2.3.1%2Bcpu-cp312-cp312-linux_x86_64.whl
+https://download.pytorch.org/whl/cu118/torch-2.3.1%2Bcu118-cp312-cp312-linux_x86_64.whl  # GPU
+stable-baselines3==2.3.2
+numpy==1.26.4
+coloredlogs==15.0.1
+tqdm
+
+# # dependencies for rclpy (which will be available once ros2 is sourced)
+#
+# pyyaml==6.0.2
+
+# lark==1.2.2
+
+scipy==1.11.3
+h5py==3.9.0
+matplotlib==3.5.3

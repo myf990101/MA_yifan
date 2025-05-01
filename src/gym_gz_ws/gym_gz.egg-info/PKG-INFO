@@ -1,0 +1,5 @@
+Metadata-Version: 2.2
+Name: gym_gz
+Version: 0.0.1
+Requires-Dist: gymnasium==0.29.1
+Dynamic: requires-dist
